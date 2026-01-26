@@ -1,0 +1,22 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.venv/
+venv/
+env/
+
+# Docker
+*.log
+.pgdata/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Streamlit cache
+.streamlit/
+
+# Secrets
+.env
