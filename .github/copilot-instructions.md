@@ -17,14 +17,14 @@ This is a **multi-service Docker-based analytics platform** with four components
 
 ## Data Flow & Column Normalization
 
-All column names in the `sales` table are **UPPERCASE** (normalized in [load_data.py](load_data.py#L11-L12)):
+All column names in the `sales` table are **UPPERCASE** (normalized in [load_data.py](../load_data.py#L11-L12)):
 - CSV columns are normalized: `df.columns = [c.upper() for c in df.columns]`
 - SQL queries **must** use quoted uppercase: `"COUNTRY"`, `"YEAR_ID"`, `"SALES"`, `"ORDERDATE"`, etc.
 - The dashboard handles string encoding issues from the Windows-encoded CSV (see [dashboard.py#L17-L18](dashboard.py#L17-L18))
 
 ## API Endpoints Pattern
 
-The Flask API ([app.py](app.py)) follows a consistent pattern:
+The Flask API ([app.py](../app.py)) follows a consistent pattern:
 
 1. **Unfiltered endpoints** (e.g., `/summary/country`, `/summary/year`):
    - Return aggregated data grouped by a dimension
@@ -70,7 +70,7 @@ The `-v` flag removes persistent PostgreSQL volumes, forcing a fresh reload.
 # Assuming local PostgreSQL at 127.0.0.1:5432
 python app.py
 ```
-[db_load.py](db_load.py) is the legacy local loader; use [load_data.py](load_data.py) for Docker.
+[db_load.py](../db_load.py) is the legacy local loader; use [load_data.py](../load_data.py) for Docker.
 
 ## Environment Configuration
 
@@ -93,8 +93,8 @@ For local development, [db_load.py](db_load.py) uses `DB_HOST=127.0.0.1` and exp
 
 ## Key Files Reference
 
-- **Data schema & load logic**: [load_data.py](load_data.py)
-- **All API endpoints**: [app.py](app.py)
-- **Dashboard UI & filter logic**: [dashboard.py](dashboard.py)
-- **Service orchestration**: [docker-compose.yml](docker-compose.yml)
+- **Data schema & load logic**: [load_data.py](../load_data.py)
+- **All API endpoints**: [app.py](../app.py)
+- **Dashboard UI & filter logic**: [dashboard.py](../dashboard.py)
+- **Service orchestration**: [docker-compose.yml](../docker-compose.yml)
 - **Per-service dependencies**: `requirements-api.txt`, `requirements-ui.txt`, `requirements-loader.txt`
